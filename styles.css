@@ -1,0 +1,68 @@
+body{
+    margin: 0px;
+}
+.header{
+    height: 80vh;
+    background-image: url(images/bg1.jpg);
+    background-color: black;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+.headerContent a{
+    color: white;
+    text-decoration: none;
+    border: 2px greenyellow solid;
+    margin: 0.625rem 1.15rem;
+    padding: 0.625rem 1.1875rem;
+    border-radius: 0.625rem;
+    text-transform: uppercase;
+    float: right;
+}
+.header img{
+    margin: 1rem;
+    float: right;
+    display: none;
+}
+.advert{
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+}
+@media screen and (max-width:780px) {
+    .header{
+        height: 80vh;
+        background-image: url(images/bg1.jpg);
+        background-color: black;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        position: relative;
+    }
+    nav{
+        display: none;
+    }
+    .headerContent img{
+        display: block;
+    }
+    .navigation{
+        display: block;
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        width: 100%;
+        opacity: 0.5;
+    }
+    .navigation a{
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        border: 0;
+    }
+}
