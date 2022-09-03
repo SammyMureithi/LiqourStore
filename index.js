@@ -44,4 +44,18 @@ menu.addEventListener( "click", () => {
         nav.classList.remove("navigation")
     }
    
-})
+} )
+fetch( "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a" )
+    .then( res => {
+        if ( res.ok ) {
+            console.log( "Succesfull fetching ..." );
+        }
+        else {
+            console.log( "Fetch unsucessfull" );
+        }
+        return res
+    } )
+    .then( data => data.json())
+    .then( data => console.log( data ) )
+    .catch( error => console.log( error ) );
+    

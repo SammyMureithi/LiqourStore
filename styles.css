@@ -3,7 +3,6 @@ body{
 }
 .header{
     height: 80vh;
-    background-image: url(images/bg1.jpg);
     background-color: black;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -26,14 +25,82 @@ body{
     float: right;
     display: none;
 }
+section >h1{
+    color: red;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+}
 .advert{
-margin: 0;
+margin: 0 ;
 position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 text-align: center;
 }
+.drink{
+    max-width: 1000px;
+    display: flex;
+    margin: 10px auto;
+    height: 40vh;
+    padding: 2rem;
+    border: 2px solid black;
+    border-radius: 12px;
+    width: 80vw;
+}
+.drink img{
+    width: 60%;
+    max-width: 22.5rem;
+    border-radius: 12px;
+}
+.description{
+    margin: 0px auto;
+    width: 20rem;
+}
+.description button{
+    background:  linear-gradient(to right, #FFD500 0%, #0000 100%);
+    border-radius: 12px;
+    padding: 10px 19px;
+}
+
+.description button span{
+    font-weight: 900;
+    color: black;
+    font-size: 1.2rem;
+}
+.randomIngredient{
+    height: 60vh;
+    background-image: url(images/bg2.jpg);
+    background-color: black;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+.ingredient{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    }
+footer{
+    background-color: black;
+    color: white;
+    text-align: center;
+    }
+ footer img{
+    width: 30vw;
+    margin-top: 20px ;
+ } 
+ footer h1{
+    margin-top: 0px;
+    padding-top: 10px;
+ }  
 @media screen and (max-width:780px) {
     .header{
         height: 80vh;
@@ -64,5 +131,17 @@ text-align: center;
         text-decoration: none;
         text-transform: uppercase;
         border: 0;
+    }
+    .drink{
+        flex-direction: column;
+        height: fit-content;
+        text-align: center;
+    }
+    .drink img{
+        justify-content: center;
+        align-self: center;
+    }    
+    .description button{
+        margin: 0px auto;
     }
 }
