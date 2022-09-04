@@ -51,88 +51,16 @@ menu.addEventListener( "click", () => {
     }
    
 } )
-fetch( "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a" )
-    .then( res => {
-        if ( res.ok ) {
-            console.log( "Succesfull fetching All..." );
-        }
-        else {
-            console.log( "Fetch unsucessfull" );
-        }
-        return res
-    } )
-    .then( data => data.json())
-    .then( data => {
-        const datas = data.drinks
-        const myDrink = datas.map( element => {
-            const drink = document.createElement( 'div' );
-            drink.className = "drink";
-            const drinkImg = document.createElement( 'img' );
-            drinkImg.src = element.strDrinkThumb
-            drink.appendChild( drinkImg );
-            const description = document.createElement( 'div' );
-            description.className = "description";
-            const drinkName = document.createElement( 'h1' );
-            drinkName.innerHTML = element.strDrink + "_" + element.strCategory;
-            const paragraph = document.createElement( "p" );
-            paragraph.innerHTML = element.strInstructionsES + " " + element.strInstructionsDE + " " + element.strInstructionsIT;
-            const Span = document.createElement( 'span' );
-            const Kes = document.createElement( 'p' );
-            Kes.textContent = "Kes";
-            Span.append = Kes;
-            const button = document.createElement( "button" );
-            button.innerHTML = "<span>Kes </span>"+ element.idDrink;
-            description.appendChild( drinkName);
-            description.appendChild( paragraph );
-            description.appendChild( button );
-            drink.appendChild( description )
-            return drinks.appendChild(drink);
-        } )
-    
-        
-    } )
-    .catch( error => console.log( error ) );
-
-    //lets now fetch the category one
-console.log( "Cateregory" );
-console.log( "Let's fetch Ordinary" );
-Ordinary.addEventListener( "click", () => {
-    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink" )
+//Let's fetch all the alcoholic
+Alcoholic.addEventListener( "click", () => {
+    console.log( "clicked" );
+    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic" )
         .then( res => {
             if ( res.ok ) {
-                console.log( "Fetching ... (Ordinary)" );
+                console.log( "Fetching ... (Alcoholic)" );
             }
             else {
-                console.log( "Fetch Usuccessful ...(Ordinary)" );
-            }
-            return res
-        } )
-        .then( data => data.json() )
-        .then( data => {
-            const Ordinadry = data.drinks.map( element => {
-                const CDrink = document.createElement( "div" );
-                CDrink.className = "CDrink";
-                const CaregoryImg = document.createElement( 'img' );
-                CaregoryImg.src = element.strDrinkThumb;
-                const CategoryName = document.createElement( "h1" );
-                CategoryName.innerHTML = element.strDrink;
-                CDrink.appendChild( CaregoryImg );
-                CDrink.appendChild( CategoryName );
-                return categoryDrinks.prepend( CDrink )
-            } )
-        } )
-        .catch( error => console.log( error ) )
-} );
-    
-//Let's Fetch Cocktail
-Cocktail.addEventListener( "click", () => {
-    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail" )
-        .then( res => {
-            if ( res.ok ) {
-                console.log( "Fetching ... (Cocktail)" );
-            }
-            else {
-                console.log( "Fetch Usuccessful ...(Cocktail)" );
+                console.log( "Fetch Usuccessful ...(Alcoholic)" );
             }
             return res
         } )
@@ -157,3 +85,30 @@ Cocktail.addEventListener( "click", () => {
         .catch( error => console.log( error ) )
 } );
 
+NonAlcoholic.addEventListener( "click", () => {
+    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic" )
+        .then( res => {
+            if ( res.ok ) {
+                console.log( "Fetching ... (NonAlcoholic)" );
+            }
+            else {
+                console.log( "Fetch Usuccessful ...(NonAlcoholic)" );
+            }
+            return res
+        } )
+        .then( data => data.json() )
+        .then( data => {
+            const Ordinadry = data.drinks.map( element => {
+                const CDrink = document.createElement( "div" );
+                CDrink.className = "CDrink";
+                const CaregoryImg = document.createElement( 'img' );
+                CaregoryImg.src = element.strDrinkThumb;
+                const CategoryName = document.createElement( "h1" );
+                CategoryName.innerHTML = element.strDrink;
+                CDrink.appendChild( CaregoryImg );
+                CDrink.appendChild( CategoryName );
+                return categoryDrinks.prepend( CDrink )
+            } )
+        } )
+        .catch( error => console.log( error ) )
+} );

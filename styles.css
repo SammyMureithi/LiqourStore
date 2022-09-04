@@ -43,7 +43,7 @@ text-align: center;
     max-width: 1000px;
     display: flex;
     margin: 10px auto;
-    height: 40vh;
+    height: fit-content;
     padding: 2rem;
     border: 2px solid black;
     border-radius: 12px;
@@ -53,6 +53,7 @@ text-align: center;
     width: 60%;
     max-width: 22.5rem;
     border-radius: 12px;
+    max-height: 400px;
 }
 .description{
     margin: 0px auto;
@@ -101,6 +102,36 @@ footer{
     margin-top: 0px;
     padding-top: 10px;
  }  
+ /* Category Page*/
+ .category{
+    text-align: center;
+    margin-top: 2rem;
+ }
+ .category button{
+    padding: 10px 19px;
+    border-radius: 12px;
+    color: white;
+    background-color: #FFD500;
+    font-weight: 900;
+ }
+ .categoryDrinks{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 2rem;
+ }
+ .CDrink{
+    margin: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 12px;
+ }
+ .CDrink img{
+    max-width: 30vw;
+ }
+  .CDrink h1{
+    max-width: 50%;
+  }
 @media screen and (max-width:780px) {
     .header{
         height: 80vh;
@@ -144,4 +175,17 @@ footer{
     .description button{
         margin: 0px auto;
     }
+    .categoryDrinks{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        text-align: center;
+        margin-top: 2rem;
+        justify-content: center;
+        align-items: center;
+     }
+     .CDrink img{
+        width: 900px;
+        max-width: 90vw;
+     }
 }
