@@ -92,51 +92,21 @@ fetch( "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a" )
         
     } )
     .catch( error => console.log( error ) );
-
-    //lets now fetch the category one
-console.log( "Cateregory" );
-console.log( "Let's fetch Ordinary" );
-Ordinary.addEventListener( "click", () => {
-    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink" )
-        .then( res => {
-            if ( res.ok ) {
-                console.log( "Fetching ... (Ordinary)" );
-            }
-            else {
-                console.log( "Fetch Usuccessful ...(Ordinary)" );
-            }
-            return res
-        } )
-        .then( data => data.json() )
-        .then( data => {
-            const Ordinadry = data.drinks.map( element => {
-                const CDrink = document.createElement( "div" );
-                CDrink.className = "CDrink";
-                const CaregoryImg = document.createElement( 'img' );
-                CaregoryImg.src = element.strDrinkThumb;
-                const CategoryName = document.createElement( "h1" );
-                CategoryName.innerHTML = element.strDrink;
-                CDrink.appendChild( CaregoryImg );
-                CDrink.appendChild( CategoryName );
-                return categoryDrinks.prepend( CDrink )
-            } )
-        } )
-        .catch( error => console.log( error ) )
-} );
     
-//Let's Fetch Cocktail
-Cocktail.addEventListener( "click", () => {
-    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail" )
+Ordinary.addEventListener( "click", (event) => {
+    fetchFromApi("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink",event.target.textContent )
+});
+    
+function fetchFromApi( url, name ) {
+    console.log(`Fetching name ...${name}`)
+    fetch( url )
         .then( res => {
-            if ( res.ok ) {
-                console.log( "Fetching ... (Cocktail)" );
-            }
-            else {
-                console.log( "Fetch Usuccessful ...(Cocktail)" );
+            if ( !res.ok ) {
+                console.log( "Problem fetching from this url" + url );
             }
             return res
         } )
-        .then( data => data.json() )
+        .then( res => res.json() )
         .then( data => {
             const Ordinadry = data.drinks.map( element => {
                 const CDrink = document.createElement( "div" );
@@ -152,8 +122,12 @@ Cocktail.addEventListener( "click", () => {
                 } )
                 return categoryDrinks.prepend( CDrink )
             } )
+            console.log("Good Job")
             
         } )
-        .catch( error => console.log( error ) )
-} );
+    .catch(error => console.log(error))
+}
 
+Cocktail.addEventListener( "click", (event) => {
+    fetchFromApi( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail",event.target.textContent )
+} );

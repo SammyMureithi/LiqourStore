@@ -50,19 +50,16 @@ menu.addEventListener( "click", () => {
    
 } )
 //Let's fetch all the alcoholic
-CocktailGlass.addEventListener( "click", () => {
-    console.log( "clicked" );
-    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass" )
+function fetchFromApi( url, name ) {
+    console.log(`Fetching name ...${name}`)
+    fetch( url )
         .then( res => {
-            if ( res.ok ) {
-                console.log( "Fetching ... (Cocktail_glass)" );
-            }
-            else {
-                console.log( "Fetch Usuccessful ...(Cocktail_glass)" );
+            if ( !res.ok ) {
+                console.log( "Problem fetching from this url" + url );
             }
             return res
         } )
-        .then( data => data.json() )
+        .then( res => res.json() )
         .then( data => {
             const Ordinadry = data.drinks.map( element => {
                 const CDrink = document.createElement( "div" );
@@ -73,38 +70,18 @@ CocktailGlass.addEventListener( "click", () => {
                 CategoryName.innerHTML = element.strDrink;
                 CDrink.appendChild( CaregoryImg );
                 CDrink.appendChild( CategoryName );
-               
                 return categoryDrinks.prepend( CDrink )
             } )
+            console.log("Good Job")
             
         } )
-        .catch( error => console.log( error ) )
-} );
+    .catch(error => console.log(error))
+}
 
-ChampagneFlute.addEventListener( "click", () => {
-    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Champagne_flute" )
-        .then( res => {
-            if ( res.ok ) {
-                console.log( "Fetching ... (Champagne_flute)" );
-            }
-            else {
-                console.log( "Fetch Usuccessful ...(Champagne_flute)" );
-            }
-            return res
-        } )
-        .then( data => data.json() )
-        .then( data => {
-            const Ordinadry = data.drinks.map( element => {
-                const CDrink = document.createElement( "div" );
-                CDrink.className = "CDrink";
-                const CaregoryImg = document.createElement( 'img' );
-                CaregoryImg.src = element.strDrinkThumb;
-                const CategoryName = document.createElement( "h1" );
-                CategoryName.innerHTML = element.strDrink;
-                CDrink.appendChild( CaregoryImg );
-                CDrink.appendChild( CategoryName );
-                return categoryDrinks.prepend( CDrink )
-            } )
-        } )
-        .catch( error => console.log( error ) )
-} );
+ChampagneFlute.addEventListener( "click", ( event ) => {
+        fetchFromApi( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Champagne_flute", event.target.textContent )
+    } );
+    
+    CocktailGlass.addEventListener( "click", (event) => {
+        fetchFromApi( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass",event.target.textContent )
+    } );

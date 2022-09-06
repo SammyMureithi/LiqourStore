@@ -51,20 +51,18 @@ menu.addEventListener( "click", () => {
     }
    
 } )
-//Let's fetch all the alcoholic
-Alcoholic.addEventListener( "click", () => {
-    console.log( "clicked" );
-    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic" )
+
+
+function fetchFromApi( url, name ) {
+    console.log(`Fetching name ...${name}`)
+    fetch( url )
         .then( res => {
-            if ( res.ok ) {
-                console.log( "Fetching ... (Alcoholic)" );
-            }
-            else {
-                console.log( "Fetch Usuccessful ...(Alcoholic)" );
+            if ( !res.ok ) {
+                console.log( "Problem fetching from this url" + url );
             }
             return res
         } )
-        .then( data => data.json() )
+        .then( res => res.json() )
         .then( data => {
             const Ordinadry = data.drinks.map( element => {
                 const CDrink = document.createElement( "div" );
@@ -80,35 +78,16 @@ Alcoholic.addEventListener( "click", () => {
                 } )
                 return categoryDrinks.prepend( CDrink )
             } )
+            console.log("Good Job")
             
         } )
-        .catch( error => console.log( error ) )
-} );
+    .catch(error => console.log(error))
+}
 
-NonAlcoholic.addEventListener( "click", () => {
-    fetch( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic" )
-        .then( res => {
-            if ( res.ok ) {
-                console.log( "Fetching ... (NonAlcoholic)" );
-            }
-            else {
-                console.log( "Fetch Usuccessful ...(NonAlcoholic)" );
-            }
-            return res
-        } )
-        .then( data => data.json() )
-        .then( data => {
-            const Ordinadry = data.drinks.map( element => {
-                const CDrink = document.createElement( "div" );
-                CDrink.className = "CDrink";
-                const CaregoryImg = document.createElement( 'img' );
-                CaregoryImg.src = element.strDrinkThumb;
-                const CategoryName = document.createElement( "h1" );
-                CategoryName.innerHTML = element.strDrink;
-                CDrink.appendChild( CaregoryImg );
-                CDrink.appendChild( CategoryName );
-                return categoryDrinks.prepend( CDrink )
-            } )
-        } )
-        .catch( error => console.log( error ) )
-} );
+  Alcoholic.addEventListener( "click", ( event ) => {
+        fetchFromApi( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic", event.target.textContent )
+    } );
+    
+    NonAlcoholic.addEventListener( "click", (event) => {
+        fetchFromApi( "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic",event.target.textContent )
+    } );
